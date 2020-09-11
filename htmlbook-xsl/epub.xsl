@@ -161,7 +161,7 @@
   </xsl:param>
 
   <!-- Param to specify filename for cover HTML (only applicable if $generate.cover.html is enabled)-->
-  <xsl:param name="cover.html.filename" select="'cover.html'"/>
+  <xsl:param name="cover.html.filename" select="'cover.xhtml'"/>
 
   <!-- Param to specify whether or not to include the cover HTML file in the spine (only applicable if $generate.cover.html is enabled)-->
   <xsl:param name="cover.in.spine" select="1"/>
@@ -175,7 +175,7 @@
   <!-- ID to use in the manifest for the NCX TOC (if $generate.ncx.toc is enabled) -->
   <xsl:param name="ncx.toc.id">toc.ncx</xsl:param>
 
-  <!-- Specify how many levels of sections to include in NCX TOC. 
+  <!-- Specify how many levels of sections to include in NCX TOC.
        An $ncx.toc.section.depth of 0 indicates only chapter-level headings and above to be included in NCX TOC
        An $ncx.toc.section depth of 1 indicates only sect1-level headings and above to be included in NCX TOC
        And so on...
@@ -208,12 +208,12 @@
   <xsl:param name="css.id">epub-css</xsl:param>
 
   <!-- List "external assets" (assets not referenced in source, like fonts, CSS url()s)
-       to be embedded here: place each asset on a separate line 
+       to be embedded here: place each asset on a separate line
        Filenames should be relative paths from OPF directory to location of asset
   -->
   <xsl:param name="external.assets.list">NotoSansSymbols-Regular.ttf</xsl:param>
 
-  <!-- Useful for EPUB 2 backward compatibility. Setting to 1 will turn on EPUB2-compatible elements, 
+  <!-- Useful for EPUB 2 backward compatibility. Setting to 1 will turn on EPUB2-compatible elements,
        which means that HTML5 structural semantic elements
        like <section> and <figure> will be replicated as <div> to help ensure compatibility for cross-referencing and CSS styling in
        non-EPUB3-compliant ereaders -->
@@ -285,7 +285,7 @@
 	  <xsl:with-param name="type" select="'DEBUG'"/>
 	  <xsl:with-param name="message">
 	    <xsl:text>Warning: @data-type value </xsl:text>
-	    <xsl:value-of select="."/> 
+	    <xsl:value-of select="."/>
 	    <xsl:text> is not a valid epub:type value and no epub:type attribute will be added for it</xsl:text>
 	  </xsl:with-param>
 	</xsl:call-template>
@@ -354,5 +354,5 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-  
-</xsl:stylesheet> 
+
+</xsl:stylesheet>
