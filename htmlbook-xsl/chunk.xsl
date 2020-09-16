@@ -80,7 +80,7 @@ sect5:s
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-       
+
   <xsl:template match="h:section|h:div[contains(@data-type, 'part')]|h:nav[contains(@data-type, 'toc')]">
     <xsl:variable name="is.chunk" select="htmlbook:is-chunk(.)"/>
     <!-- <xsl:message>Element name: <xsl:value-of select="local-name()"/>, data-type name: <xsl:value-of select="@data-type"/>, Is chunk: <xsl:value-of select="$is.chunk"/></xsl:message> -->
@@ -102,22 +102,22 @@ sect5:s
   <xsl:template name="full-output-filename">
     <!-- NOTES ON LOGIC FOR THIS TEMPLATE -->
     <!-- When using an XSLT 1.0 processor that relies on exsl:document, this template takes into account the fact that -->
-    <!-- nested exsl:document calls change context directory on which relative filepaths are based, 
+    <!-- nested exsl:document calls change context directory on which relative filepaths are based,
 	 resulting in nested outputdir/outputdir filenames for chunks within chunks -->
     <!-- From the docs at http://www.exslt.org/exsl/elements/document/ -->
-    <!-- When the href attribute of a subsidiary document is a relative URI, 
-	 the relative URI is resolved into an absolute URI only if and when the subsidiary document is output. 
-	 The output URI of the document with which the subsidiary document is associated (ie the output URI of 
-	 its parent in the tree of documents) is used as the base URI. The resulting absolute URI is used as the 
+    <!-- When the href attribute of a subsidiary document is a relative URI,
+	 the relative URI is resolved into an absolute URI only if and when the subsidiary document is output.
+	 The output URI of the document with which the subsidiary document is associated (ie the output URI of
+	 its parent in the tree of documents) is used as the base URI. The resulting absolute URI is used as the
 	 output URI of the subsidiary document. -->
     <!-- As a workaround, we just omit $outputdir from $full-output-filename for nested chunks
 	 to ensure that all chunk documents are in the same output directory -->
     <xsl:param name="chunk" select="."/>
     <xsl:param name="output-filename"/>
-    
+
     <xsl:variable name="chars-to-append-to-outputdir">
       <xsl:if test="$outputdir != '' and substring($outputdir, string-length($outputdir), 1) != '/'">
-	<!-- Append a / if outputdir doesn't already end with one --> 
+	<!-- Append a / if outputdir doesn't already end with one -->
 	<xsl:text>/</xsl:text>
       </xsl:if>
     </xsl:variable>
@@ -145,12 +145,12 @@ sect5:s
 	  <xsl:value-of select="concat($outputdir, $chars-to-append-to-outputdir)"/>
 	</xsl:when>
 	<xsl:when test="$outputdir != '' and not($generate.root.chunk = 1) and not($chunk[ancestor::*[htmlbook:is-chunk(.) = 1]])">
-	  <!-- $outputdir is specified and *is not* absolute filepath, 
+	  <!-- $outputdir is specified and *is not* absolute filepath,
 	       and generate.root.chunk is not specified (if it is, then previous "when" will set the outputdir properly),
 	       and chunk *is not* a nested chunk -->
 	  <!-- Because this *is not* a nested chunk, we need to include $outputdir in full file path -->
 	  <xsl:value-of select="concat($outputdir, $chars-to-append-to-outputdir)"/>
-	</xsl:when>	
+	</xsl:when>
 	<!-- In all other cases (i.e., we're processing a nested chunk, or $outputdir was not specified), we can omit $outputdir from $full-output-filename -->
       </xsl:choose>
       <xsl:value-of select="$output-filename"/>
@@ -320,7 +320,7 @@ sect5:s
       <xsl:number count="*[local-name() = $node-name and @data-type = $node-data-type]" format="01"/>
       <xsl:if test="$original-call = 1">
 	<!-- ToDo: Parameterize me to allow use of different filename extension? -->
-	<xsl:text>.html</xsl:text>
+	<xsl:text>.xhtml</xsl:text>
       </xsl:if>
     </xsl:for-each>
   </xsl:template>
@@ -394,7 +394,7 @@ sect5:s
 	      </xsl:apply-templates>
 	    </xsl:when>
 	    <!-- We can't locate the target; fall back on ??? -->
-	    <xsl:otherwise>	      
+	    <xsl:otherwise>
 	      <xsl:text>???</xsl:text>
 	    </xsl:otherwise>
 	  </xsl:choose>
@@ -425,7 +425,7 @@ sect5:s
     </xsl:variable>
     <xsl:variable name="href-anchor" select="substring-after($calculated-output-href, '#')"/>
     <xsl:choose>
-      <xsl:when test="(not(node())) and 
+      <xsl:when test="(not(node())) and
 		      ($is-xref = 1) and
 		      not(@data-type='link')">
 	<xsl:call-template name="process-as-xref"/>
@@ -593,13 +593,13 @@ sect5:s
 
       <!-- Get a list of all chunk filenames corresponding to each footnote node -->
       <xsl:variable name="filenames-for-footnotes">
-	<xsl:for-each select="$all-footnotes">	
+	<xsl:for-each select="$all-footnotes">
 	  <xsl:call-template name="filename-for-node">
 	    <xsl:with-param name="node" select="."/>
 	  </xsl:call-template>
 	</xsl:for-each>
       </xsl:variable>
-      
+
       <!-- Get the filename of the current chunk -->
       <xsl:variable name="this-chunk-filename">
 	<xsl:call-template name="filename-for-node">
@@ -610,7 +610,7 @@ sect5:s
       <!-- We're in a chunk, but before we generate footnotes, confirm there are actually footnotes in the chunk -->
       <!-- If this chunk's filename is in the list of footnote chunk filenames, then there are indeed footnotes in this chunk -->
       <xsl:if test="contains($filenames-for-footnotes, $this-chunk-filename)">
-   
+
 	<!-- Footnotes should be put in an aside by default, but we call html.output.element to see if <aside> should be remapped to something else -->
 	<!-- Kludge-y way to get an aside element -->
 	<xsl:variable name="aside-element">
@@ -671,7 +671,7 @@ sect5:s
 						    following::*[generate-id(.) = generate-id($current.chunk)]][last()]"/>
 	<xsl:if test="$previous.chunk">
 <!--	  	  <xsl:message>Current chunk: <xsl:value-of select="$current.chunk/@id"/>; Previous chunk: <xsl:value-of select="$previous.chunk/@id"/>; Output filename: 	      <xsl:call-template name="output-filename-for-chunk">
-		  <xsl:with-param name="node" select="$previous.chunk"/> 
+		  <xsl:with-param name="node" select="$previous.chunk"/>
               </xsl:call-template>
 	    </xsl:message> -->
 	  <xsl:call-template name="output-filename-for-chunk">
@@ -685,11 +685,11 @@ sect5:s
 	  <xsl:with-param name="message">
 	    <xsl:text>Unable to find proper context for previous-URL placeholder. URL will not be generated</xsl:text>
 	  </xsl:with-param>
-	</xsl:call-template>	
+	</xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-  
+
   <!-- Support use of &lt;?prev_url?&gt; in insert URL to previous chunk in href -->
   <!-- Because PIs not allowed in attribute context -->
   <xsl:template match="@href[. = '&lt;?prev_url?&gt;']" mode="process-chunk-wrapper">
@@ -807,4 +807,4 @@ sect5:s
     </xsl:attribute>
   </xsl:template>
 
-</xsl:stylesheet> 
+</xsl:stylesheet>
