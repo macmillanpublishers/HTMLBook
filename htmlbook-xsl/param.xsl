@@ -50,7 +50,7 @@
 
   <!-- Specify whether to autogenerate labels on sectioning and formal elements in HTML output (as opposed to labeling with CSS); default is to not include labels (0) -->
   <xsl:param name="autogenerate.labels" select="0"/>
-  
+
   <!-- Specify whether to autogenerate labels in bookmark attributes for PDF output (@data-pdf-bookmark)-->
   <xsl:param name="autogenerate.pdf.bookmark.labels" select="1"/>
 
@@ -60,7 +60,7 @@
   <!-- Separator to be used between parts of a label -->
   <xsl:param name="intralabel.separator" select="'.'"/>
 
-<!-- For any book division that you want to have numeration, specify the @data-type, followed by colon, 
+<!-- For any book division that you want to have numeration, specify the @data-type, followed by colon,
      and then a valid @format value for <xsl:number/>. If there is no entry in this list, or "none" is specified, corresponding division
      will not get labeled -->
   <xsl:param name="label.numeration.by.data-type">
@@ -110,7 +110,7 @@ sect5:none
   <!-- Specify whether to include number labels in TOC entries -->
   <xsl:param name="toc-include-labels" select="0"/>
 
-  <!-- Specify how many levels of sections to include in TOC. 
+  <!-- Specify how many levels of sections to include in TOC.
        A $toc.section.depth of 0 indicates only chapter-level headings and above to be included in TOC
        A $toc.section depth of 1 indicates only sect1-level headings and above to be included in TOC
        And so on...
@@ -144,7 +144,7 @@ sect5:xref
 <xsl:param name="autogenerate.xref.pagenum.style" select="1"/>
 
 <!-- Valid pagenum styles correspond to valid counter/list-style-type styles (http://www.w3.org/TR/2011/REC-CSS2-20110607/generate.html#propdef-list-style-type)
-     decimal, decimal-leading-zero, lower-roman, upper-roman, georgian, armenian 
+     decimal, decimal-leading-zero, lower-roman, upper-roman, georgian, armenian
 -->
 <!-- Top-level sections listed here only; presumption is that pagenum type is set on top-level sections only,
      and is inherited by lower-level sections -->
@@ -184,7 +184,7 @@ toc:lower-roman
   <xsl:param name="table.footnote.numeration.format" select="'a'"/>
 
   <!-- Numeration format for non-table footnotes -->
-  <xsl:param name="footnote.numeration.format" select="'1'"/>
+  <xsl:param name="footnote.numeration.format" select="'i'"/>
 
   <!-- Admonition-specific params -->
   <!-- Add title heading elements for different admonition types that do not already have headings in markup -->
@@ -216,9 +216,9 @@ sidebar
 
   <!-- Params for handling of comments in a manuscript -->
 
-  <!-- Turn on this parameter (off by default) to toggle on display of comments in the manuscript 
+  <!-- Turn on this parameter (off by default) to toggle on display of comments in the manuscript
        (both XML comments and elements tagged with data-type="comment")
     -->
   <xsl:param name="show-comments" select="0"/>
 
-</xsl:stylesheet> 
+</xsl:stylesheet>
