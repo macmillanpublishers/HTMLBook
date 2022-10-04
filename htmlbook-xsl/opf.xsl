@@ -31,7 +31,7 @@
     </xsl:if>
     <xsl:value-of select="$opf.filename"/>
   </xsl:variable>
-      
+
   <!-- Convert $external.assets.list to XML for easier parsing -->
   <xsl:variable name="external.assets.list.xml">
     <xsl:call-template name="get.external.assets.xml"/>
@@ -300,9 +300,9 @@
 	<dc:rights>
 	  <xsl:value-of select="$metadata.rights"/>
 	</dc:rights>
-	<meta property="dcterms:rightsHolder">
+	<!-- <meta property="dcterms:rightsHolder">
 	  <xsl:value-of select="$metadata.rights"/>
-	</meta>
+	</meta> -->
       </xsl:if>
       <xsl:if test="$metadata.publisher != ''">
 	<dc:publisher>
@@ -348,7 +348,7 @@
       </xsl:if>
       <xsl:if test="count($metadata.creators) &gt; 0">
 	<!-- Use just one dc:creator element for all authors, as that sadly gives better results in ereaders -->
-	<dc:creator>	      
+	<dc:creator>
 	  <xsl:for-each select="$metadata.creators">
 	    <xsl:if test="count($metadata.creators) &gt; 2 and position() != 1">
 	      <xsl:call-template name="get-localization-value">
@@ -431,7 +431,7 @@
 	</xsl:variable>
 	<reference href="{$html5-toc-filename}" type="toc" title="Table of Contents"/>
       </xsl:if>
-      
+
       <!-- Calculate <reference element for start-of-text -->
       <!-- Override and customize for different handling, if desired -->
       <xsl:variable name="start-of-text-filename">
@@ -454,7 +454,7 @@
 	  </xsl:otherwise>
 	</xsl:choose>
       </xsl:variable>
-      <reference href="{$start-of-text-filename}" type="text" title="Text"/>      
+      <reference href="{$start-of-text-filename}" type="text" title="Text"/>
     </guide>
   </xsl:template>
 
@@ -664,12 +664,12 @@
   <!-- borrowed from docbook-xsl epub3/epub3-element-mods.xsl -->
   <xsl:template name="convert.date.to.utc">
     <xsl:param name="date" select="''"/>
-    <!-- input format is YYYY-MM-DDTHH:MM:SS-X:00                                                                                                                                     
+    <!-- input format is YYYY-MM-DDTHH:MM:SS-X:00
 	 where -X:00 is the offset from UTC. -->
-    
+
     <!-- output format is YYYY-MM-DDTHH:MM:SSZ with no offset -->
     <!-- FIX ME:  Not so easy without a proper UTC date function. -->
-    <!-- Currently it just converts the local time to this format, which is                                                                                                           
+    <!-- Currently it just converts the local time to this format, which is
 	 not the correct UTC time. -->
     <xsl:value-of select="concat(substring($date,1,19), 'Z')"/>
   </xsl:template>
@@ -705,4 +705,4 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-</xsl:stylesheet> 
+</xsl:stylesheet>
