@@ -72,7 +72,10 @@
     <!-- Look for title first in head, then as child of body -->
     <xsl:value-of select="(//h:head/h:title|//h:body/h:h1|//h:body/h:header/h:h1)[1]"/>
   </xsl:param>
-
+  <xsl:param name="metadata.author">
+    <!-- pull from meta element in head -->
+    <xsl:value-of select="(//h:head/h:meta[contains(@name, 'author')][1]/@content"/>
+  </xsl:param>
   <xsl:param name="metadata.language">
     <xsl:value-of select="$book-language"/>
   </xsl:param>
