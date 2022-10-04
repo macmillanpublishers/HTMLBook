@@ -47,6 +47,11 @@
 	  <xsl:value-of select="$metadata.title"/>
 	</text>
       </docTitle>
+      <docAuthor>
+	<text>
+	  <xsl:value-of select="$metadata.author"/>
+	</text>
+      </docAuthor>
       <xsl:variable name="navMap">
 	<navMap>
 	  <!-- Only put root chunk in the NCX TOC if $ncx.include.root.chunk is enabled -->
@@ -164,4 +169,4 @@
     </navPoint>
   </xsl:template>
 
-</xsl:stylesheet> 
+</xsl:stylesheet>
