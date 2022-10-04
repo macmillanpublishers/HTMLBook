@@ -74,7 +74,7 @@
   </xsl:param>
   <xsl:param name="metadata.author">
     <!-- pull from meta element in head -->
-    <xsl:value-of select="(//h:head/h:meta[contains(@name, 'author')][1]/@content"/>
+    <xsl:value-of select="//h:head/h:meta[contains(@name, 'author')][1]/@content"/>
   </xsl:param>
   <xsl:param name="metadata.language">
     <xsl:value-of select="$book-language"/>
