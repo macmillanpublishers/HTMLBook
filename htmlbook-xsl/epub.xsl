@@ -15,6 +15,8 @@
 		xmlns:htmlbook="https://github.com/oreillymedia/HTMLBook"
 		xmlns:func="http://exslt.org/functions"
 		xmlns="http://www.w3.org/1999/xhtml"
+		lang="en"
+		xml:lang="en"
 		extension-element-prefixes="exsl func set date"
 		exclude-result-prefixes="date e exsl func h htmlbook m ncx opf set svg">
 
@@ -152,6 +154,13 @@
 
   <xsl:param name="metadata.ibooks-specified-fonts" select="1"/>
 
+	<!-- adding meta param values for accessibility -->
+	<xsl:param name="metadata.accessibilityFeatures" select="1"/>
+	<xsl:param name="metadata.accessibilityHazard" select="'none'"/>
+	<xsl:param name="metadata.accessMode" select="1"/>
+	<xsl:param name="metadata.accessModeSufficient" select="'textual,visual'"/>
+	<xsl:param name="metadata.accessibilitySummary" select="'This publication generally has been produced to meet WCAG Level AA, but it has not been checked for color contrast within images.'"/>
+
   <xsl:param name="package.namespaces">
     <opf.foo/>
     <dc:foo/>
@@ -250,7 +259,7 @@
   <xsl:template name="generate-cover-html">
     <xsl:variable name="cover.html.content">
       <xsl:value-of select="'&lt;!DOCTYPE html&gt;'" disable-output-escaping="yes"/>
-      <html xmlns:epub="http://www.idpf.org/2007/ops">
+      <html xmlns:epub="http://www.idpf.org/2007/ops" lang="en" xml:lang="en">
 	<!-- ToDo: What else do we want in the <head>? -->
 	<head>
 	  <title>Cover</title>
@@ -321,7 +330,7 @@
     <!-- Only add the <html>/<head> if they don't already exist -->
     <xsl:choose>
       <xsl:when test="not(self::h:html)">
-	<html xmlns:epub="http://www.idpf.org/2007/ops">
+	<html xmlns:epub="http://www.idpf.org/2007/ops" lang="en" xml:lang="en">
 	  <!-- ToDo: What else do we want in the <head>? -->
 	  <head>
 	    <title>

@@ -2,7 +2,7 @@
 		xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 		xmlns:dc="http://purl.org/dc/elements/1.1/"
 		xmlns:ncx="http://www.daisy.org/z3986/2005/ncx/"
-		xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns:dcterms="http://purl.org/dc/terms/"
 		xmlns:opf="http://www.idpf.org/2007/opf"
 		xmlns:m="http://www.w3.org/1998/Math/MathML"
 		xmlns:svg="http://www.w3.org/2000/svg"
@@ -252,6 +252,11 @@
     <xsl:param name="metadata.contributors" select="$metadata.contributors"/>
     <xsl:param name="metadata.creators" select="$metadata.creators"/>
     <xsl:param name="metadata.ibooks-specified-fonts" select="$metadata.ibooks-specified-fonts"/>
+		<xsl:param name="metadata.accessibilityFeatures" select="$metadata.accessibilityFeatures"/>
+		<xsl:param name="metadata.accessibilityHazard" select="$metadata.accessibilityHazard"/>
+		<xsl:param name="metadata.accessMode" select="$metadata.accessMode"/>
+		<xsl:param name="metadata.accessModeSufficient" select="$metadata.accessModeSufficient"/>
+		<xsl:param name="metadata.accessibilitySummary" select="$metadata.accessibilitySummary"/>
     <xsl:param name="generate.cover.html" select="$generate.cover.html"/>
     <metadata>
 
@@ -379,7 +384,27 @@
       <xsl:if test="$metadata.ibooks-specified-fonts = 1">
 	<meta property="ibooks:specified-fonts">true</meta>
       </xsl:if>
-    </metadata>
+			<xsl:if test="$metadata.accessibilityFeatures = 1">
+	<meta property="schema:accessibilityFeature">displayTransformability</meta>
+	<meta property="schema:accessibilityFeature">readingOrder</meta>
+	<meta property="schema:accessibilityFeature">structuralNavigation</meta>
+	<meta property="schema:accessibilityFeature">tableOfContents</meta>
+      </xsl:if>
+	<meta property="schema:accessibilityHazard">
+	  <xsl:value-of select="$metadata.accessibilityHazard"/>
+	</meta>
+			<xsl:if test="$metadata.accessMode = 1">
+	<meta property="schema:accessMode">textual</meta>
+	<meta property="schema:accessMode">visual</meta>
+			</xsl:if>
+	<meta property="schema:accessModeSufficient">
+	  <xsl:value-of select="$metadata.accessModeSufficient"/>
+	</meta>
+	<meta property="schema:accessibilitySummary">
+	  <xsl:value-of select="$metadata.accessibilitySummary"/>
+	</meta>
+
+	  </metadata>
   </xsl:template>
 
   <xsl:template name="generate-spine">
