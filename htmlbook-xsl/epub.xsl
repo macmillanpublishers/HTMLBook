@@ -15,8 +15,6 @@
 		xmlns:htmlbook="https://github.com/oreillymedia/HTMLBook"
 		xmlns:func="http://exslt.org/functions"
 		xmlns="http://www.w3.org/1999/xhtml"
-		lang="en"
-		xml:lang="en"
 		extension-element-prefixes="exsl func set date"
 		exclude-result-prefixes="date e exsl func h htmlbook m ncx opf set svg">
 
